@@ -1,3 +1,5 @@
+const { default: bsCustomFileInput } = require("bs-custom-file-input")
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'

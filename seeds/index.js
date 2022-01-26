@@ -15,19 +15,19 @@ db.once("open", () => {
 const sample = array => array[Math.floor(Math.random() * array.length)]
 
 // call unsplash and return small image
-async function seedImg() {
-    try {
-        const resp = await axios.get('https://api.unsplash.com/photos/random', {
-            params: {
-                client_id: 'dmu9CQ2d8sZl3_N8DCO_9dTvsU1ViutaPkd6eJhZRyA',
-                collections: 1114848,
-            },
-        })
-        return resp.data.urls.small
-    } catch (err) {
-        console.error(err)
-    }
-}
+// async function seedImg() {
+//     try {
+//         const resp = await axios.get('https://api.unsplash.com/photos/random', {
+//             params: {
+//                 client_id: 
+//                 collections: 1114848,
+//             },
+//         })
+//         return resp.data.urls.small
+//     } catch (err) {
+//         console.error(err)
+//     }
+// }
 
 
 const seedDB = async () => {
@@ -40,9 +40,23 @@ const seedDB = async () => {
             author: '61ef412dd3d4208d4ad2fe0f',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: await seedImg(),
             description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, quisquam totam. Autem architecto asperiores quae inventore, harum nulla molestias possimus ipsa modi doloribus provident fugiat. Explicabo, iste ipsa? Aspernatur, accusantium!',
-            price
+            price,
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/dwozyxk5t/image/upload/v1643232821/YelpCamp/lez8l6tib8sb76taxtio.jpg',
+                  filename: 'YelpCamp/lez8l6tib8sb76taxtio',
+                },
+                {
+                  url: 'https://res.cloudinary.com/dwozyxk5t/image/upload/v1643232821/YelpCamp/ojchkgmgb2o0bo8lplae.jpg',
+                  filename: 'YelpCamp/ojchkgmgb2o0bo8lplae',
+                },
+                {
+                  url: 'https://res.cloudinary.com/dwozyxk5t/image/upload/v1643232823/YelpCamp/jphswukzcdwiqjvdv647.jpg',
+                  filename: 'YelpCamp/jphswukzcdwiqjvdv647',
+                }
+              ],
+            
         })
         await camp.save();
     }
